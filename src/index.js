@@ -7,6 +7,7 @@ import * as nearAPI from 'near-api-js';
 // Initializing contract
 async function initContract() {
   const nearConfig = getConfig(process.env.NODE_ENV || 'testnet');
+  console.log("initContract -> nearConfig", nearConfig)
 
   // Initializing connection to the NEAR TestNet
   const near = await nearAPI.connect({
@@ -18,6 +19,7 @@ async function initContract() {
 
   // Needed to access wallet
   const walletConnection = new nearAPI.WalletConnection(near);
+  console.log("initContract -> walletConnection", walletConnection)
 
   // Load in account data
   let currentUser;
@@ -26,6 +28,7 @@ async function initContract() {
       accountId: walletConnection.getAccountId(),
       balance: (await walletConnection.account().state()).amount
     };
+    console.log("initContract -> currentUser", currentUser)
   }
 
   // Initializing our contract APIs by contract name and configuration
@@ -38,6 +41,7 @@ async function initContract() {
     // getAccountId() will return empty string if user is still unauthorized
     sender: walletConnection.getAccountId()
   });
+  console.log("initContract -> contract", contract)
 
   return { contract, currentUser, nearConfig, walletConnection };
 }
