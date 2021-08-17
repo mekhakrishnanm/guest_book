@@ -48786,7 +48786,7 @@ async function initContract() {
 
   const near = await nearAPI.connect({
     deps: {
-      keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore()
+      keyStore: new nearAPI.keyStores.InMemoryKeyStore()
     },
     ...nearConfig
   }); // Needed to access wallet
@@ -48864,7 +48864,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55766" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62558" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
